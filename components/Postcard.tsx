@@ -1,14 +1,11 @@
+import Link from "next/link";
 import React from "react";
+import { PostProps } from "../type/posts";
+// import { PostProps } from "../../type/posts"
 
-export type Post = {
-  userId?: number;
-  id?: number;
-  title?: string;
-  body?: string;
-};
 
-export const Postcard = ({ post }: Post) => {
-  const { userId, id, title, body } = post;
+const Postcard = ({ post }: PostProps) => {
+  const { id, title, body } = post;
   return (
     <div className="p-4 lg:w-1/3">
       <div className="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
@@ -19,7 +16,7 @@ export const Postcard = ({ post }: Post) => {
           {title}
         </h1>
         <p className="leading-relaxed mb-3">{body}</p>
-        <a className="text-indigo-500 inline-flex items-center">
+        <Link className="text-indigo-500 inline-flex items-center" href={`posts/${post.id}`}>
           Learn More
           <svg
             className="w-4 h-4 ml-2"
@@ -33,7 +30,7 @@ export const Postcard = ({ post }: Post) => {
             <path d="M5 12h14"></path>
             <path d="M12 5l7 7-7 7"></path>
           </svg>
-        </a>
+        </Link>
         <div className="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
           <span className="text-gray-400 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
             <svg
@@ -69,3 +66,5 @@ export const Postcard = ({ post }: Post) => {
     </div>
   );
 };
+
+export default Postcard 
